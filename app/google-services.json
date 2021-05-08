@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "693113996996",
+    "project_id": "someshwara-assignment",
+    "storage_bucket": "someshwara-assignment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693113996996:android:3ac6aa53a3537a01b4ab91",
+        "android_client_info": {
+          "package_name": "com.example.someshwara_assignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693113996996-0tipvia0l8o9n4kgghplask4kepubj85.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7Yua9VPCEcxMpEv2J6RDlLH71vyu0CIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693113996996-0tipvia0l8o9n4kgghplask4kepubj85.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
