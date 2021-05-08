@@ -2,6 +2,8 @@ package com.example.someshwara_assignment;
 
 import android.Manifest;
 import android.app.Service;
+import android.app.job.JobParameters;
+import android.app.job.JobService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,7 +22,7 @@ import androidx.core.app.ActivityCompat;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class LocationService extends Service implements LocationListener {
+public class LocationService extends JobService implements LocationListener {
 
     boolean isGPSEnable = false;
     boolean isNetworkEnable = false;
@@ -39,10 +41,30 @@ public class LocationService extends Service implements LocationListener {
 
     }
 
-    @Nullable
+    /*@Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }*/
+
+    @Override
+    public boolean onStartJob(JobParameters params) {
+        return false;
+    }
+
+    @Override
+    public boolean onStopJob(JobParameters params) {
+        return false;
+    }
+
+    @Override
+    public void onRebind(Intent intent) {
+        super.onRebind(intent);
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        return true;
     }
 
     @Override

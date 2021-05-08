@@ -41,10 +41,11 @@ public class MainActivity extends Activity {
     SharedPreferences.Editor medit;
     Double latitude, longitude;
     Geocoder geocoder;
-    private final int FIVE_MINUTES = 300000;
+    private final int FIVE_MINUTES = 30000;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     LocationModel m1;
+    LocationVIewModel locationVIewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +53,19 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Location");
+
+        locationVIewModel=new LocationVIewModel(this);
+
         btn_start = (FloatingActionButton) findViewById(R.id.fab);
         tv_latitude = (TextView) findViewById(R.id.lat);
         tv_longitude = (TextView) findViewById(R.id.lng);
         geocoder = new Geocoder(this, Locale.getDefault());
         mPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         medit = mPref.edit();
+
         fn_permission();
         fetchLocation();
         setLocation();
@@ -164,23 +170,10 @@ public class MainActivity extends Activity {
         m1=LocationModel.getSingletonePage1Data();
         m1.setLongitude(String.valueOf(longitude));
         m1.setLatitude(String.valueOf(latitude));
-        addDatatoFirebase(m1.getLongitude(), m1.getLatitude());
+       // addDatatoFirebase(m1.getLongitude(), m1.getLatitude());
+        locationVIewModel.setLocation(m1);
         Log.d("time", String.valueOf(latitude));
     }
 
-    private void addDatatoFirebase(String name, String phone) {
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                databaseReference.setValue(m1);
-                Toast.makeText(MainActivity.this, "Location data saved success", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MainActivity.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 }
